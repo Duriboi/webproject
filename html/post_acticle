@@ -1,0 +1,30 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.html");
+    exit();
+}
+
+include 'db.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+    $user_id = $_SESSION['user_id']; // 현재 로그인한 사용자의 ID
+
+    $sql = "INSERT INTO posts (title, content, user_id) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssi", $title, $content, $user_id);
+
+    if ($stmt->execute()) {
+        echo "게시글이 성공적으로 작성되었습니다.";
+    } else {
+        echo "게시글 작성 중 오류가 발생했습니다.";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+
