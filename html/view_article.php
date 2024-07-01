@@ -1,7 +1,7 @@
+<link rel="stylesheet" href="style.css">
 <?php
 include 'auth.php';
 include 'db.php';
-
 if (!isset($_GET['id'])) {
     echo "게시글 ID가 제공되지 않았습니다.";
     exit();

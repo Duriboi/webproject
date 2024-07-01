@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // board1_posts 테이블에 게시글 저장
-    $sql_board1 = "INSERT INTO board1_posts (title, content, user_id, username) VALUES (?, ?, ?, ?)";
+    $sql_board1 = "INSERT INTO board2_posts (title, content, user_id, username) VALUES (?, ?, ?, ?)";
     $stmt_board1 = $conn->prepare($sql_board1);
     $stmt_board1->bind_param("ssis", $title, $content, $user_id, $username);
 
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 파일 정보 저장
         if ($file_path) {
             // board1_post_id를 그대로 사용하여 files 테이블에 저장
-            $sql_file = "INSERT INTO board1_files (post_id, file_name, file_path) VALUES (?, ?, ?)";
+            $sql_file = "INSERT INTO board2_files (post_id, file_name, file_path) VALUES (?, ?, ?)";
             $stmt_file = $conn->prepare($sql_file);
             $stmt_file->bind_param("iss", $board1_post_id, $file_name, $file_path);
 
@@ -65,4 +65,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
-

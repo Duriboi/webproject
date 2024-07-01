@@ -11,12 +11,56 @@ if (!isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <title>유저 검색</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f5f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: mediumaquamarine;
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="submit"] {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: mediumaquamarine;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        p strong {
+            color: mediumaquamarine;
+        }
+    </style>
 </head>
 <body>
     <h2>유저 검색</h2>
     <form action="search.php" method="get">
         유저 아이디: <input type="text" name="username" required>
-        <input type="submit" value="검색">
+	<input type="submit" value="검색">
     </form>
 
     <?php

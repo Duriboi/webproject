@@ -6,9 +6,83 @@ include 'auth.php';  // 로그인 검사를 위한 auth.php 포함
 <head>
     <meta charset="UTF-8">
     <title>About 페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f5f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: mediumaquamarine;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        form input[type="text"],
+        form textarea,
+        form input[type="file"],
+        form input[type="submit"] {
+            margin: 5px 0;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form input[type="submit"] {
+            background-color: mediumaquamarine;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        h3 {
+            color: mediumaquamarine;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        ul li a {
+            color: mediumaquamarine;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .no-posts {
+            color: darkgray;
+            font-style: italic;
+        }
+    </style>
 </head>
+
 <body>
     <h2>About 페이지</h2>
+    <a href="search_articles.php">게시물검색</a>
 
     <!-- 게시글 작성 폼 -->
     <form action="post_article.php" method="post" enctype="multipart/form-data">

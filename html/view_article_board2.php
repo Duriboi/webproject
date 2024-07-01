@@ -11,7 +11,7 @@ if (!isset($_GET['id'])) {
 $article_id = $_GET['id'];
 $_SESSION['current_article_id'] = $article_id;
 
-$sql_article = "SELECT * FROM board1_posts WHERE id = ?";
+$sql_article = "SELECT * FROM board2_posts WHERE id = ?";
 $stmt_article = $conn->prepare($sql_article);
 $stmt_article->bind_param("i", $article_id);
 $stmt_article->execute();
@@ -27,7 +27,7 @@ echo "<h2>" . htmlspecialchars($row_article['title']) . "</h2>";
 echo "<p>" . htmlspecialchars($row_article['content']) . "</p>";
 
 // 파일 다운로드 링크 추가
-$sql_files = "SELECT * FROM board1_files WHERE post_id = ?";
+$sql_files = "SELECT * FROM board2_files WHERE post_id = ?";
 $stmt_files = $conn->prepare($sql_files);
 $stmt_files->bind_param("i", $article_id);
 $stmt_files->execute();
@@ -46,8 +46,8 @@ $stmt_files->close();
 
 // 게시글 수정 및 삭제 버튼 추가
 if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $row_article['user_id']) {
-    echo "<a href='edit_article_board1.php?id=$article_id'>게시글 수정</a> | ";
-    echo "<a href='delete_article_board1.php?id=$article_id' onclick='return confirm(\"정말로 삭제하시겠습니까?\")'>게시글 삭제</a>";
+    echo "<a href='edit_article_board2.php?id=$article_id'>게시글 수정</a> | ";
+    echo "<a href='delete_article_board2.php?id=$article_id' onclick='return confirm(\"정말로 삭제하시겠습니까?\")'>게시글 삭제</a>";
 }
 
 echo "<hr>";

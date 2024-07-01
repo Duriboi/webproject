@@ -45,7 +45,7 @@ if (!empty($keyword)) {
 }
 
 // 전체 쿼리
-$sql = "SELECT id, title, username, created_at FROM posts $where_clause $sort_clause";
+$sql = "SELECT id, title, username, created_at FROM board2_posts $where_clause $sort_clause";
 $stmt = $conn->prepare($sql);
 
 if (!empty($where_clause)) {
@@ -154,7 +154,7 @@ $num_results = $result->num_rows;
             var searchType = "<?php echo $search_type; ?>";
             var keyword = "<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>";
             var sortForm = document.getElementById('sort_form');
-            
+
             // 페이지 로드 시 검색 조건이 있을 때만 정렬 옵션 폼 보이기
             if (searchType !== '' && keyword !== '') {
                 sortForm.style.display = 'block';
@@ -168,7 +168,7 @@ $num_results = $result->num_rows;
     <h2>게시글 검색</h2>
 
     <!-- 검색 폼 -->
-    <form action="search_articles.php" method="get">
+    <form action="search_article_board2.php" method="get">
         <label for="search_type">검색 유형:</label>
         <select name="search_type" id="search_type">
             <option value="title" <?php echo ($search_type == 'title') ? 'selected' : ''; ?>>제목</option>
@@ -183,13 +183,13 @@ $num_results = $result->num_rows;
     <?php if ($num_results > 0): ?>
         <div id="sort_form" style="display: none;">
             <h3>정렬 옵션</h3>
-            <form action="search_articles.php" method="get">
+            <form action="search_article_board2.php" method="get">
                 <input type="hidden" name="search_type" value="<?php echo $search_type; ?>">
                 <input type="hidden" name="keyword" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
                 <label for="sort_by">정렬:</label>
                 <select name="sort_by" id="sort_by">
-                    <option value="title_asc" <?php echo ($sort_by == 'title_asc') ? 'selected' : ''; ?>>제목 오름차순</option>
-                    <option value="title_desc" <?php echo ($sort_by == 'title_desc') ? 'selected' : ''; ?>>제목 내림차순</option>
+                    <option value="title_asc" <?php echo ($sort_by == 'title_asc') ? 'selected' : ''; ?>>제목 오름 차순</option>
+                    <option value="title_desc" <?php echo ($sort_by == 'title_desc') ? 'selected' : ''; ?>>제목 내 림차순</option>
                     <option value="oldest" <?php echo ($sort_by == 'oldest') ? 'selected' : ''; ?>>오래된 순</option>
                     <option value="latest" <?php echo ($sort_by == 'latest') ? 'selected' : ''; ?>>최신 순</option>
                 </select>
@@ -209,7 +209,7 @@ $num_results = $result->num_rows;
                 $username = htmlspecialchars($row['username']);
                 $created_at = htmlspecialchars($row['created_at']);
                 ?>
-                <li><a href='view_article.php?id=<?php echo $id; ?>'><?php echo $title; ?></a> - 작성자: <?php echo $username; ?>, 작성일: <?php echo $created_at; ?></li>
+                <li><a href='view_article_board2.php?id=<?php echo $id; ?>'><?php echo $title; ?></a> - 작성자: <?php echo $username; ?>, 작성일: <?php echo $created_at; ?></li>
             <?php endwhile; ?>
         </ul>
     <?php else: ?>
@@ -223,4 +223,3 @@ $num_results = $result->num_rows;
 $stmt->close();
 $conn->close();
 ?>
-

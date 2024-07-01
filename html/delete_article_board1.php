@@ -9,12 +9,11 @@ if (!isset($_GET['id'])) {
 
 $article_id = $_GET['id'];
 
-$sql_delete = "DELETE FROM posts WHERE id = ? AND user_id = ?";
+$sql_delete = "DELETE FROM board1_posts WHERE id = ? AND user_id = ?";
 $stmt_delete = $conn->prepare($sql_delete);
 $stmt_delete->bind_param("ii", $article_id, $_SESSION['user_id']);
 $stmt_delete->execute();
 
-header("Location: about.php");
+header("Location: board1.php");
 exit();
 ?>
-

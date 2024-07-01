@@ -1,15 +1,89 @@
+<?php
+include 'auth.php';  // 로그인 검사를 위한 auth.php 포함
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Board 2</title>
+    <title>보드2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f5f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: mediumaquamarine;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        form input[type="text"],
+        form textarea,
+        form input[type="file"],
+        form input[type="submit"] {
+            margin: 5px 0;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form input[type="submit"] {
+            background-color: mediumaquamarine;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        h3 {
+            color: mediumaquamarine;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        ul li a {
+            color: mediumaquamarine;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .no-posts {
+            color: darkgray;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
-    <h2>Board 2</h2>
-
+    <h2>보드2</h2>
+    <a href="search_article_board2.php">게시물검색</a>
     <!-- 게시글 작성 폼 -->
-    <form action="post_article.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="page" value="board2">
+    <form action="post_article_board2.php" method="post" enctype="multipart/form-data">
         제목: <input type="text" name="title" required><br>
         내용: <textarea name="content" rows="4" cols="50" required></textarea><br>
         파일: <input type="file" name="file"><br>
@@ -29,7 +103,7 @@
 
     <ul>
         <?php
-        include 'db_board2.php';
+        include 'db.php';
 
         // 정렬 기준 설정
         $sort = isset($_GET['sort']) ? $_GET['sort'] : 'created_at_desc';
@@ -59,7 +133,7 @@
                 $title = htmlspecialchars($row['title']);
                 $username = htmlspecialchars($row['username']);
                 $created_at = htmlspecialchars($row['created_at']);
-                echo "<li><a href='view_article.php?id=$id&page=board2'>$title</a> - 작성자: $username, 작성일: $created_at</li>";
+                echo "<li><a href='view_article_board2.php?id=$id'>$title</a> - 작성자: $username, 작성일: $created_at</li>";
             }
         } else {
             echo "<li>게시된 글이 없습니다.</li>";
@@ -70,4 +144,3 @@
     </ul>
 </body>
 </html>
-
